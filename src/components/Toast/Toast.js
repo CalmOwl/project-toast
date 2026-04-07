@@ -19,33 +19,26 @@ const ICONS_BY_VARIANT = {
 };
 
 
-function Toast({ message, variant, isToastOpen, setIsToastOpen }) {
+function Toast({ message, variant, onClose }) {
+  const IconComponent = ICONS_BY_VARIANT[variant];
 
   return (
-    isToastOpen && (
-      <div className={`${styles.toast} ${styles[variant]}`}>
-        <div className={styles.iconContainer}>
-          <IconButton icon={ICONS_BY_VARIANT[variant]} />
-        </div>
-        <p className={styles.content}>
-          {message}
-        </p>
-        <button
-          className={styles.closeButton}
-          onClick={() => setIsToastOpen(false)}
-        >
-          <X size={24} />
-          <VisuallyHidden>Dismiss message</VisuallyHidden>
-        </button>
+    <div className={`${styles.toast} ${styles[variant]}`}>
+      <div className={styles.iconContainer}>
+        <IconComponent size={24} />
       </div>
-    )
+      <p className={styles.content}>
+        {message}
+      </p>
+      <button
+        className={styles.closeButton}
+        onClick={onClose}
+      >
+        <X size={24} />
+        <VisuallyHidden>Dismiss message</VisuallyHidden>
+      </button>
+    </div>
   );
-}
-
-function IconButton({ icon: Icon }) {
-  return (
-    <Icon size={24} />
-  )
 }
 
 export default Toast;
