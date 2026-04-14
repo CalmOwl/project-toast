@@ -19,7 +19,7 @@ const ICONS_BY_VARIANT = {
 };
 
 
-function Toast({ message, variant, onClose }) {
+function Toast({ variant, message, onClose }) {
   const IconComponent = ICONS_BY_VARIANT[variant];
 
   return (
